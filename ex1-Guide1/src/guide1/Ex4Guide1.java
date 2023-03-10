@@ -1,4 +1,4 @@
-package ex1.guide1;
+package guide1;
 import java.util.Scanner;
 
 public class Ex4Guide1 {

@@ -1,5 +1,5 @@
 
-package ex1.guide1;
+package guide1;
 
 public class Ex1Guide1 {
 

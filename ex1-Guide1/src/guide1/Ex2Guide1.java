@@ -1,4 +1,4 @@
-package ex1.guide1;
+package guide1;
 
 public class Ex2Guide1 {
     public static void main(String[] args){
