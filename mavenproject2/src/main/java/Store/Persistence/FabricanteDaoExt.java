@@ -1,5 +1,8 @@
 package Store.Persistence;
 import Store.Entity.Fabricante;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public final class FabricanteDaoExt extends DAO{
     
@@ -48,21 +51,54 @@ public final class FabricanteDaoExt extends DAO{
         }
     }
     
-    public void consultFabricante(Fabricante newFabricante, String condition) throws Exception{
+    public ArrayList<Fabricante> consultFabricante(Fabricante newFabricante, String condition) throws Exception{
         try {
-            String query = "SELECT (";
+            String query = "SELECT ";
             if(newFabricante.getCode() != -1){
                 query = query + "codigo, ";
             }
             if (newFabricante.getName() != null){
-                query = query + "nombre)";
+                query = query + "nombre, ";
             }
-            query = query + " from fabricante WHERE " + condition;
-
+            query = query.substring(0, query.length()-3);
+            
+            query = query + " FROM fabricante";
+            if(condition != null){
+                query = query + " WHERE " + condition;
+            }
+            
             consultDB(query);
+            return processResult();
+            
+            
         } catch (Exception e){
             throw e;
         }
+    }
+    
+    private ArrayList<Fabricante> processResult() throws SQLException{
         
+        ArrayList<Fabricante> auxArray = new ArrayList<>();
+        ResultSetMetaData metaData = result.getMetaData();
+        int countColumns = metaData.getColumnCount();
+
+        try {
+            while(result.next()){
+               Fabricante auxFabricante = new Fabricante();
+
+               for (int i=1; i<=countColumns; i++){
+                   if (metaData.getColumnName(i).contains("codigo")){
+                       auxFabricante.setCode(result.getInt(i));
+                   } else if (metaData.getColumnName(i).contains("nombre")){
+                       auxFabricante.setName(result.getString(i));
+                   }
+               }
+
+               auxArray.add(auxFabricante);
+            }
+            return auxArray;
+        } catch (SQLException e){
+            throw e;
+        }
     }
 }

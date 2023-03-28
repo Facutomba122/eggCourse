@@ -59,7 +59,7 @@ public abstract class DAO {
             connectDB();
             query = con.createStatement();
             result = query.executeQuery(sql); 
-        } catch (Exception e){
+        } catch (ClassNotFoundException | SQLException e){
             throw e;
         }
     }
