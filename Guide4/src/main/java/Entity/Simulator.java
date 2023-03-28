@@ -2,18 +2,25 @@ package Entity;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.HashSet;
 
 public class Simulator {
     ArrayList<Integer> totalDNI = new ArrayList<>();
     ArrayList<Student> students = new ArrayList<>();
     ArrayList<String> totalFullnames = new ArrayList<>();
-
+    
+    
+    
     public Simulator() {
     }
-  
-    @Override
-    public String toString() {
-        return "Simulator{" + "students=" + students + '}';
+    
+    public void votes(){
+        for (Student auxStudent : this.students){
+            
+            for (int i=0; i<3; i++){
+                
+            }
+        }
     }
     
     public void generateStudents(){
@@ -25,7 +32,6 @@ public class Simulator {
             students.add(newStudent);
         }
     }
-    
     
     public ArrayList<String> generateFullname(int q){
         ArrayList<String> students = new ArrayList<>();
@@ -54,4 +60,8 @@ public class Simulator {
         return totalDNI;
     }
     
+    @Override
+    public String toString() {
+        return "Simulator{" + "students=" + students + '}';
+    }
 }

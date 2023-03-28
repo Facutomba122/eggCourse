@@ -4,12 +4,13 @@ package Entity;
 public class Student {
     String fullname;
     int DNI;
-    int votes;
+    Votes votes;
+    
 
     public Student() {
     }
     
-    public Student(String fullname, int DNI, int votes) {
+    public Student(String fullname, int DNI, Votes votes) {
         this.fullname = fullname;
         this.DNI = DNI;
         this.votes = votes;
@@ -35,7 +36,7 @@ public class Student {
         return votes;
     }
 
-    public void setVotes(int votes) {
+    public void setVotes(Votes votes) {
         this.votes = votes;
     }
 
